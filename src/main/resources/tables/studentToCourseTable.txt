@@ -1,0 +1,17 @@
+CREATE TABLE IF NOT EXISTS studenttocourse
+(
+    enrollment_id SERIAL PRIMARY KEY,
+    student_id INTEGER,
+    course_id INTEGER,
+    CONSTRAINT unique_course UNIQUE (student_id, course_id),
+    CONSTRAINT fk_studenttocourse_course_id FOREIGN KEY (course_id)
+        REFERENCES public.courses (course_id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION,
+    CONSTRAINT fk_studenttocourse_student_id FOREIGN KEY (student_id)
+        REFERENCES public.students (student_id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+)
+
+TABLESPACE pg_default;
