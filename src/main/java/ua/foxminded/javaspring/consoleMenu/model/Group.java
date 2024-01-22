@@ -1,32 +1,38 @@
 package ua.foxminded.javaspring.consoleMenu.model;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "groups")
 public class Group {
 
-    private Long groupID;
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long groupId;
+    @Column(nullable = false, length = 10)
     private String groupName;
 
     public Group() {}
 
-    public Group(Long groupID) {
-        this.groupID = groupID;
+    public Group(Long groupId) {
+        this.groupId = groupId;
     }
 
     public Group(String groupName) {
         this.groupName = groupName;
     }
 
-    public Group(Long groupID, String groupName) {
-        this.groupID = groupID;
+    public Group(Long groupId, String groupName) {
+        this.groupId = groupId;
         this.groupName = groupName;
     }
 
-    public void setGroupID(Long groupID) {
-        this.groupID = groupID;
+    public void setGroupId(Long groupId) {
+        this.groupId = groupId;
     }
 
-    public Long getGroupID() {
-        return groupID;
+    public Long getGroupId() {
+        return groupId;
     }
 
     public String getGroupName() {

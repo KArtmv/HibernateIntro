@@ -1,10 +1,20 @@
 package ua.foxminded.javaspring.consoleMenu.model;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "students")
 public class Student {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long studentID;
+    @Column(nullable = false, length = 15)
     private String firstName;
+    @Column(nullable = false, length = 15)
     private String lastName;
+    @ManyToOne
+    @JoinColumn(name = "group_id")
     private Group group;
 
     public Student() {

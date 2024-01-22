@@ -1,9 +1,21 @@
 package ua.foxminded.javaspring.consoleMenu.model;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "studenttocourse",
+uniqueConstraints = @UniqueConstraint(columnNames = {"student_id", "course_id"}))
 public class StudentAtCourse {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "enrollment_id")
     private Long enrollmentID;
+    @ManyToOne
+    @JoinColumn(name = "student_id")
     private Student student;
+    @ManyToOne
+    @JoinColumn(name = "course_id")
     private Course course;
 
     public StudentAtCourse(Student student, Course course) {

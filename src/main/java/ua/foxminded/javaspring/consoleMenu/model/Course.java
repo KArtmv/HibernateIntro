@@ -1,9 +1,17 @@
 package ua.foxminded.javaspring.consoleMenu.model;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "courses")
 public class Course {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long courseID;
+    @Column(nullable = false, length = 50)
     private String courseName;
+    @Column(nullable = false, length = 100)
     private String courseDescription;
 
     public Course(){
