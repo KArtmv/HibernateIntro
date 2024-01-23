@@ -69,7 +69,7 @@ public class StudentRepo implements StudentDAO, TablesDAO<Student> {
     @Override
     public boolean addItem(Student student) {
         return jdbcTemplate.update(SQL_ADD_NEW_STUDENT, student.getFirstName(), student.getLastName(),
-                student.getGroup().getGroupID()) > 0;
+                student.getGroup().getGroupId()) > 0;
     }
 
     @Override

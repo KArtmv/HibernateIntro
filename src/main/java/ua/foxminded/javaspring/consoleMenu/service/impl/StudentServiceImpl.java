@@ -1,19 +1,15 @@
 package ua.foxminded.javaspring.consoleMenu.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 import ua.foxminded.javaspring.consoleMenu.dao.*;
 import ua.foxminded.javaspring.consoleMenu.exception.InvalidIdException;
-import ua.foxminded.javaspring.consoleMenu.model.Course;
-import ua.foxminded.javaspring.consoleMenu.model.Group;
 import ua.foxminded.javaspring.consoleMenu.model.Student;
 import ua.foxminded.javaspring.consoleMenu.model.StudentAtCourse;
 import ua.foxminded.javaspring.consoleMenu.service.StudentService;
 
 import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
 
 @Service
 public class StudentServiceImpl implements StudentService {
@@ -36,7 +32,7 @@ public class StudentServiceImpl implements StudentService {
             if (groupDAO.getItemByID(student.getGroup()).isPresent()) {
                 return studentDAO.addItem(student);
             } else {
-                throw new InvalidIdException("Not found group with received ID: " + student.getGroup().getGroupID());
+                throw new InvalidIdException("Not found group with received ID: " + student.getGroup().getGroupId());
             }
     }
 

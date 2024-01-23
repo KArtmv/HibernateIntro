@@ -67,7 +67,7 @@ public class ConsolePrinter {
     public void printAllGroups() {
         List<Group> groups = groupService.getAllGroups();
         if (!CollectionUtils.isEmpty(groups)) {
-            groups.forEach(group -> print(String.format(messages.printAllGroups, group.getGroupID(), group.getGroupName())));
+            groups.forEach(group -> print(String.format(messages.printAllGroups, group.getGroupId(), group.getGroupName())));
         } else {
             LOGGER.info("Failed to get list of courses.");
         }

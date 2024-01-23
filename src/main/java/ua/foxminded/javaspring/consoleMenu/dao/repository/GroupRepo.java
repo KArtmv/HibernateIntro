@@ -58,7 +58,7 @@ public class GroupRepo implements GroupDAO, TablesDAO<Group> {
     @Override
     public Optional<Group> getItemByID(Group group) {
         try {
-            return Optional.ofNullable(jdbcTemplate.queryForObject(SQL_GET_GROUP_BY_ID, new GroupMapper(), group.getGroupID()));
+            return Optional.ofNullable(jdbcTemplate.queryForObject(SQL_GET_GROUP_BY_ID, new GroupMapper(), group.getGroupId()));
         } catch (EmptyResultDataAccessException e) {
             return Optional.empty();
         }

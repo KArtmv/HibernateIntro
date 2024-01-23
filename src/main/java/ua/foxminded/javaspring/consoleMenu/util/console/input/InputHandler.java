@@ -74,7 +74,7 @@ public class InputHandler {
 
     public Group getGroup(){
         Group group = new Group();
-        group.setGroupID(scanner.getLong());
+        group.setGroupId(scanner.getLong());
         return group;
     }
 
