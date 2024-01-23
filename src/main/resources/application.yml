@@ -4,3 +4,9 @@ spring:
     url: jdbc:postgresql://localhost:5432/serviceLayerDB
     username: admin
     password: admin
+  sql:
+    init:
+      mode: always
+  jpa:
+    hibernate:
+      ddl-auto: none
