@@ -1,4 +1,4 @@
-package ua.foxminded.javaspring.consoleMenu.databaseInitializer;
+package ua.foxminded.javaspring.consoleMenu.util;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

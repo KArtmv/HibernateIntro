@@ -5,7 +5,7 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Component;
-import ua.foxminded.javaspring.consoleMenu.databaseInitializer.ReadResourcesFile;
+import ua.foxminded.javaspring.consoleMenu.util.ReadResourcesFile;
 import ua.foxminded.javaspring.consoleMenu.databaseInitializer.generator.DataConduct;
 import ua.foxminded.javaspring.consoleMenu.databaseInitializer.generator.data.*;
 import ua.foxminded.javaspring.consoleMenu.databaseInitializer.generator.filesourse.SourceFilesDatabaseData;

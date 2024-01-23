@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
-import ua.foxminded.javaspring.consoleMenu.databaseInitializer.ReadResourcesFile;
+import ua.foxminded.javaspring.consoleMenu.util.ReadResourcesFile;
 
 @Component
 @PropertySource("classpath:sqlScriptsPath.properties")
