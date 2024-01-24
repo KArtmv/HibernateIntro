@@ -1,10 +1,12 @@
 package ua.foxminded.javaspring.consoleMenu.config;
 
 import org.springframework.context.annotation.Bean;
+import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Component;
 import ua.foxminded.javaspring.consoleMenu.controller.CourseController;
 import ua.foxminded.javaspring.consoleMenu.controller.GroupController;
 import ua.foxminded.javaspring.consoleMenu.controller.StudentController;
+import ua.foxminded.javaspring.consoleMenu.util.ReadResourcesFile;
 import ua.foxminded.javaspring.consoleMenu.util.console.input.InputHandler;
 import ua.foxminded.javaspring.consoleMenu.util.MyScanner;
 import ua.foxminded.javaspring.consoleMenu.util.console.output.ConsolePrinter;
@@ -36,5 +38,10 @@ public class ConsoleInteractionConfig {
     @Bean
     public InputHandler input(MyScanner scanner, ConsolePrinter consolePrinter, StudentService studentService, ApplicationMessages messages){
         return new InputHandler(scanner, consolePrinter, studentService, messages);
+    }
+
+    @Bean
+    public ReadResourcesFile readFile(ResourceLoader resourceLoader) {
+        return new ReadResourcesFile(resourceLoader);
     }
 }
