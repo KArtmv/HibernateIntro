@@ -1,4 +1,4 @@
-package ua.foxminded.javaspring.consoleMenu.model;
+package ua.foxminded.javaspring.consoleMenu.dto;
 
 public class CounterStudentsAtGroup {
 

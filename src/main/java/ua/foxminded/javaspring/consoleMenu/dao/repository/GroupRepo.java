@@ -2,12 +2,10 @@ package ua.foxminded.javaspring.consoleMenu.dao.repository;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-import ua.foxminded.javaspring.consoleMenu.controller.CourseController;
 import ua.foxminded.javaspring.consoleMenu.dao.GroupDAO;
-import ua.foxminded.javaspring.consoleMenu.model.CounterStudentsAtGroup;
+import ua.foxminded.javaspring.consoleMenu.dto.CounterStudentsAtGroup;
 import ua.foxminded.javaspring.consoleMenu.model.Group;
 
 import javax.persistence.*;
@@ -24,7 +22,7 @@ public class GroupRepo implements GroupDAO {
 
     private static final String GET_LIST_OF_GROUPS = "SELECT g FROM Group g";
     private static final String SQL_COUNT_STUDENTS_BY_GROUPS =
-            "SELECT NEW ua.foxminded.javaspring.consoleMenu.model.CounterStudentsAtGroup(g.groupName, COUNT(s))\n"
+            "SELECT NEW ua.foxminded.javaspring.consoleMenu.dto.CounterStudentsAtGroup(g.groupName, COUNT(s))\n"
             + "FROM Group g\n"
             + "LEFT JOIN Student s ON g = s.group\n"
             + "GROUP BY g\n"

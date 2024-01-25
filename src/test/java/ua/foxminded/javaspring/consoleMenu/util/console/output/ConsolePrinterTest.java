@@ -7,6 +7,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.test.util.ReflectionTestUtils;
+import ua.foxminded.javaspring.consoleMenu.dto.CounterStudentsAtGroup;
 import ua.foxminded.javaspring.consoleMenu.model.*;
 import ua.foxminded.javaspring.consoleMenu.menu.Menu;
 import ua.foxminded.javaspring.consoleMenu.service.CourseService;

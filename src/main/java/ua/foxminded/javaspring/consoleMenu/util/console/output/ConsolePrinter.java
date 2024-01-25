@@ -4,7 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.CollectionUtils;
-import ua.foxminded.javaspring.consoleMenu.model.CounterStudentsAtGroup;
+import ua.foxminded.javaspring.consoleMenu.dto.CounterStudentsAtGroup;
 import ua.foxminded.javaspring.consoleMenu.model.Course;
 import ua.foxminded.javaspring.consoleMenu.model.Group;
 import ua.foxminded.javaspring.consoleMenu.model.StudentAtCourse;

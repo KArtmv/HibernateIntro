@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import ua.foxminded.javaspring.consoleMenu.model.CounterStudentsAtGroup;
+import ua.foxminded.javaspring.consoleMenu.dto.CounterStudentsAtGroup;
 import ua.foxminded.javaspring.consoleMenu.util.console.input.InputHandler;
 import ua.foxminded.javaspring.consoleMenu.util.console.output.ConsolePrinter;
 import ua.foxminded.javaspring.consoleMenu.service.GroupService;

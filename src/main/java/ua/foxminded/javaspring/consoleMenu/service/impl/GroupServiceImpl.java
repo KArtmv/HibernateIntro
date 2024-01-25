@@ -3,7 +3,7 @@ package ua.foxminded.javaspring.consoleMenu.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ua.foxminded.javaspring.consoleMenu.dao.GroupDAO;
-import ua.foxminded.javaspring.consoleMenu.model.CounterStudentsAtGroup;
+import ua.foxminded.javaspring.consoleMenu.dto.CounterStudentsAtGroup;
 import ua.foxminded.javaspring.consoleMenu.model.Group;
 import ua.foxminded.javaspring.consoleMenu.service.GroupService;
 
