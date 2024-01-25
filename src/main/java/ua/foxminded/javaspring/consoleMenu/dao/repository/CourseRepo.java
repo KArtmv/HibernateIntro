@@ -1,74 +1,55 @@
 package ua.foxminded.javaspring.consoleMenu.dao.repository;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.PropertySource;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.dao.EmptyResultDataAccessException;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import ua.foxminded.javaspring.consoleMenu.dao.CourseDAO;
-import ua.foxminded.javaspring.consoleMenu.dao.TablesDAO;
-import ua.foxminded.javaspring.consoleMenu.databaseInitializer.tables.scripts.SQLQueryOfCreateTable;
 import ua.foxminded.javaspring.consoleMenu.model.Course;
-import ua.foxminded.javaspring.consoleMenu.rowmapper.CourseMapper;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.PersistenceException;
+import javax.persistence.TypedQuery;
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
 @Repository
-@PropertySource("classpath:sqlQueries.properties")
-public class CourseRepo implements TablesDAO<Course>, CourseDAO {
+public class CourseRepo implements CourseDAO {
 
-    private SQLQueryOfCreateTable queryOfCreateTable;
-    private JdbcTemplate jdbcTemplate;
+    private static final Logger LOGGER = LoggerFactory.getLogger(CourseRepo.class);
 
-    private static final String SQL_ADD_NEW_COURSE = "insert into courses (course_name, course_description) values (?, ?)";
-    private static final String SQL_GET_COURSE_BY_ID = "select * from courses where course_id=?";
-    private static final String SQL_CHECK_IS_COURSE_TABLE_EMPTY = "SELECT COUNT(*) FROM courses";
-    private static final String SQL_GET_LIST_OF_COURSE = "select * from courses";
+    @PersistenceContext
+    private EntityManager entityManager;
 
-    @Value("${sqlQuery.isExistTable}")
-    private String sqlCheckIsTableExist;
-    @Value("${table.course}")
-    private String courseTableName;
-
-    @Autowired
-    public CourseRepo(SQLQueryOfCreateTable queryOfCreateTable, JdbcTemplate jdbcTemplate) {
-        this.queryOfCreateTable = queryOfCreateTable;
-        this.jdbcTemplate = jdbcTemplate;
-    }
+    private static final String GET_LIST_OF_COURSE = "SELECT c FROM Course c";
 
     @Override
+    @Transactional
     public boolean addItem(Course course) {
-        return jdbcTemplate.update(SQL_ADD_NEW_COURSE, course.getCourseName(), course.getCourseDescription()) > 0;
+        try {
+            entityManager.persist(course);
+            return true;
+        } catch (PersistenceException e) {
+            LOGGER.error("Failed persist: {}", e.getMessage());
+            return false;
+        }
     }
 
     @Override
     public Optional<Course> getItemByID(Course course) {
         try {
-            return Optional.ofNullable(jdbcTemplate.queryForObject(SQL_GET_COURSE_BY_ID, new CourseMapper(), course.getCourseID()));
-        } catch (EmptyResultDataAccessException e) {
+            return Optional.of(entityManager.find(Course.class, course.getCourseID()));
+        } catch (PersistenceException e) {
+            LOGGER.error("Failed obtain: {}", e.getMessage());
             return Optional.empty();
         }
     }
 
     @Override
-    public boolean isTableExist() {
-        return Boolean.TRUE.equals(jdbcTemplate.queryForObject(String.format(sqlCheckIsTableExist, courseTableName), Boolean.class));
-    }
-
-    @Override
-    public void createTable() {
-        jdbcTemplate.execute(queryOfCreateTable.getCourseTable());
-    }
-
-    @Override
-    public boolean isTableEmpty() {
-        return jdbcTemplate.queryForObject(SQL_CHECK_IS_COURSE_TABLE_EMPTY, Integer.class) == 0;
-    }
-
-    @Override
     public List<Course> getAll() {
-        return jdbcTemplate.query(SQL_GET_LIST_OF_COURSE, new CourseMapper());
+        TypedQuery<Course> query = entityManager.createQuery(GET_LIST_OF_COURSE, Course.class);
+        return query.getResultList();
     }
 }
