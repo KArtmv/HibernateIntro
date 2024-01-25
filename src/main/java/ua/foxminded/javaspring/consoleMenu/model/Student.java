@@ -8,13 +8,14 @@ public class Student {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "student_id")
     private Long studentID;
     @Column(nullable = false, length = 15)
     private String firstName;
     @Column(nullable = false, length = 15)
     private String lastName;
     @ManyToOne
-    @JoinColumn(name = "group_id")
+    @JoinColumn(name = "group_id", nullable = false)
     private Group group;
 
     public Student() {
