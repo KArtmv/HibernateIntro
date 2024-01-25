@@ -9,6 +9,8 @@ import ua.foxminded.javaspring.consoleMenu.controller.StudentController;
 import ua.foxminded.javaspring.consoleMenu.util.console.input.InputHandler;
 import ua.foxminded.javaspring.consoleMenu.util.console.output.ConsolePrinter;
 
+import javax.annotation.PostConstruct;
+
 public class MenuInteraction {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(MenuInteraction.class);
@@ -31,6 +33,7 @@ public class MenuInteraction {
         this.consolePrinter = consolePrinter;
     }
 
+    @PostConstruct
     public void startMenu() {
         do {
             consolePrinter.printMenu();
