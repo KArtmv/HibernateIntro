@@ -8,6 +8,7 @@ public class Course {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "course_id")
     private Long courseID;
     @Column(nullable = false, length = 50)
     private String courseName;
