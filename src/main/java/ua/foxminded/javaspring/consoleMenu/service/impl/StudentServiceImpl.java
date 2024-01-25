@@ -2,7 +2,10 @@ package ua.foxminded.javaspring.consoleMenu.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import ua.foxminded.javaspring.consoleMenu.dao.*;
+import ua.foxminded.javaspring.consoleMenu.dao.CourseDAO;
+import ua.foxminded.javaspring.consoleMenu.dao.GroupDAO;
+import ua.foxminded.javaspring.consoleMenu.dao.StudentAtCourseDAO;
+import ua.foxminded.javaspring.consoleMenu.dao.StudentDAO;
 import ua.foxminded.javaspring.consoleMenu.exception.InvalidIdException;
 import ua.foxminded.javaspring.consoleMenu.model.Student;
 import ua.foxminded.javaspring.consoleMenu.model.StudentAtCourse;
@@ -29,11 +32,11 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public boolean addNewStudent(Student student) {
-            if (groupDAO.getItemByID(student.getGroup()).isPresent()) {
-                return studentDAO.addItem(student);
-            } else {
-                throw new InvalidIdException("Not found group with received ID: " + student.getGroup().getGroupId());
-            }
+        if (groupDAO.getItemByID(student.getGroup()).isPresent()) {
+            return studentDAO.addItem(student);
+        } else {
+            throw new InvalidIdException("Not found group with received ID: " + student.getGroup().getGroupId());
+        }
     }
 
     @Override
@@ -44,9 +47,9 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public boolean addStudentToCourse(StudentAtCourse studentAtCourse) {
-            if (courseDAO.getItemByID(studentAtCourse.getCourse()).isPresent()) {
-                return studentAtCourseDAO.addItem(studentAtCourse);
-            } else  {
+        if (courseDAO.getItemByID(studentAtCourse.getCourse()).isPresent()) {
+            return studentAtCourseDAO.addItem(studentAtCourse);
+        } else {
             throw new InvalidIdException("Not found course with received ID: " + studentAtCourse.getCourse().getCourseID());
         }
     }

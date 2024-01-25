@@ -9,7 +9,6 @@ import org.mockito.MockitoAnnotations;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
-import ua.foxminded.javaspring.consoleMenu.util.ReadResourcesFile;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;

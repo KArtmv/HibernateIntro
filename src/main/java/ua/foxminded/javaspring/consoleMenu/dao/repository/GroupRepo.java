@@ -23,10 +23,10 @@ public class GroupRepo implements GroupDAO {
     private static final String GET_LIST_OF_GROUPS = "SELECT g FROM Group g";
     private static final String SQL_COUNT_STUDENTS_BY_GROUPS =
             "SELECT NEW ua.foxminded.javaspring.consoleMenu.dto.CounterStudentsAtGroup(g.groupName, COUNT(s))\n"
-            + "FROM Group g\n"
-            + "LEFT JOIN Student s ON g = s.group\n"
-            + "GROUP BY g\n"
-            + "HAVING COUNT(s) < :count";
+                    + "FROM Group g\n"
+                    + "LEFT JOIN Student s ON g = s.group\n"
+                    + "GROUP BY g\n"
+                    + "HAVING COUNT(s) < :count";
 
     @Override
     public List<CounterStudentsAtGroup> counterStudentsAtGroups(Integer count) {

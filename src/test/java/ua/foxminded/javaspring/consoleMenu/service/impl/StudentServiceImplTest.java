@@ -2,18 +2,18 @@ package ua.foxminded.javaspring.consoleMenu.service.impl;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.mockito.junit.MockitoJUnitRunner;
-import ua.foxminded.javaspring.consoleMenu.dao.*;
+import ua.foxminded.javaspring.consoleMenu.dao.CourseDAO;
+import ua.foxminded.javaspring.consoleMenu.dao.GroupDAO;
+import ua.foxminded.javaspring.consoleMenu.dao.StudentAtCourseDAO;
+import ua.foxminded.javaspring.consoleMenu.dao.StudentDAO;
 import ua.foxminded.javaspring.consoleMenu.exception.InvalidIdException;
 import ua.foxminded.javaspring.consoleMenu.model.Course;
 import ua.foxminded.javaspring.consoleMenu.model.Group;
 import ua.foxminded.javaspring.consoleMenu.model.Student;
 import ua.foxminded.javaspring.consoleMenu.model.StudentAtCourse;
-import ua.foxminded.javaspring.consoleMenu.service.impl.StudentServiceImpl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -61,7 +61,7 @@ class StudentServiceImplTest {
     }
 
     @Test
-    void addNewStudent_shouldReturnFalse_whenReceivedCourseIsNotExist(){
+    void addNewStudent_shouldReturnFalse_whenReceivedCourseIsNotExist() {
         when(groupDAO.getItemByID(any(Group.class))).thenReturn(Optional.empty());
 
         assertThrows(InvalidIdException.class, () -> studentService.addNewStudent(student));
@@ -102,7 +102,7 @@ class StudentServiceImplTest {
     }
 
     @Test
-    void addStudentToCourse_shouldReturnTrue_whenStudentIsAddedAtCourse(){
+    void addStudentToCourse_shouldReturnTrue_whenStudentIsAddedAtCourse() {
         Course course = new Course(1L);
         StudentAtCourse studentAtCourse = new StudentAtCourse(student, course);
 
@@ -113,7 +113,7 @@ class StudentServiceImplTest {
     }
 
     @Test
-    void addStudentToCourse_shouldReturnTrue_whenCourseIdIsNotExist(){
+    void addStudentToCourse_shouldReturnTrue_whenCourseIdIsNotExist() {
         StudentAtCourse studentAtCourse = new StudentAtCourse(student, course);
 
         when(courseDAO.getItemByID(any(Course.class))).thenReturn(Optional.empty());
@@ -122,7 +122,7 @@ class StudentServiceImplTest {
     }
 
     @Test
-    void removeStudentFromCourse_shouldReturnTrue_whenIsRemoved(){
+    void removeStudentFromCourse_shouldReturnTrue_whenIsRemoved() {
         StudentAtCourse studentToRemove = new StudentAtCourse(1L, student);
         List<StudentAtCourse> studentAtCourses = new ArrayList<>();
         studentAtCourses.add(new StudentAtCourse(1L, student));
@@ -139,7 +139,7 @@ class StudentServiceImplTest {
     }
 
     @Test
-    void removeStudentFromCourse_shouldReturnFalse_whenEnrollmentNotExistOrNotRelateToStudent(){
+    void removeStudentFromCourse_shouldReturnFalse_whenEnrollmentNotExistOrNotRelateToStudent() {
         StudentAtCourse studentToRemove = new StudentAtCourse(10L, student);
         List<StudentAtCourse> studentAtCourses = new ArrayList<>();
         studentAtCourses.add(new StudentAtCourse(1L, student));

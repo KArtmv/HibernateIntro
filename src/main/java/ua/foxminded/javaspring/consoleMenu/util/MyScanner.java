@@ -24,8 +24,8 @@ public class MyScanner {
         return s;
     }
 
-    public Long getLong(){
-        try{
+    public Long getLong() {
+        try {
             return sc.nextLong();
         } catch (InputMismatchException e) {
             sc.next();
@@ -33,7 +33,7 @@ public class MyScanner {
         }
     }
 
-    public void close(){
+    public void close() {
         sc.close();
     }
 }

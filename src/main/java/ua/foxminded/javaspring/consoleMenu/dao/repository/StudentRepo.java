@@ -2,19 +2,21 @@ package ua.foxminded.javaspring.consoleMenu.dao.repository;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import ua.foxminded.javaspring.consoleMenu.dao.StudentDAO;
 import ua.foxminded.javaspring.consoleMenu.model.Student;
 import ua.foxminded.javaspring.consoleMenu.model.StudentAtCourse;
 
-import javax.persistence.*;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.PersistenceException;
+import javax.persistence.TypedQuery;
 import java.util.List;
 import java.util.Optional;
 
 @Repository
-public class StudentRepo implements StudentDAO{
+public class StudentRepo implements StudentDAO {
 
     private final Logger LOGGER = LoggerFactory.getLogger(StudentRepo.class);
 
@@ -39,7 +41,7 @@ public class StudentRepo implements StudentDAO{
         try {
             entityManager.remove(entityManager.find(Student.class, student.getStudentID()));
             return true;
-        }catch (IllegalArgumentException | PersistenceException e) {
+        } catch (IllegalArgumentException | PersistenceException e) {
             LOGGER.error("Failed to remove student: {}", e.getMessage());
             return false;
         }

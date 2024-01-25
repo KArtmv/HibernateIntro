@@ -5,10 +5,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.CollectionUtils;
 import ua.foxminded.javaspring.consoleMenu.dto.CounterStudentsAtGroup;
+import ua.foxminded.javaspring.consoleMenu.menu.Menu;
 import ua.foxminded.javaspring.consoleMenu.model.Course;
 import ua.foxminded.javaspring.consoleMenu.model.Group;
 import ua.foxminded.javaspring.consoleMenu.model.StudentAtCourse;
-import ua.foxminded.javaspring.consoleMenu.menu.Menu;
 import ua.foxminded.javaspring.consoleMenu.service.CourseService;
 import ua.foxminded.javaspring.consoleMenu.service.GroupService;
 import ua.foxminded.javaspring.consoleMenu.util.ApplicationMessages;
@@ -77,7 +77,7 @@ public class ConsolePrinter {
         print(menu.getOptions());
     }
 
-    public void print(String string){
+    public void print(String string) {
         System.out.print(string + "\n");
     }
 }

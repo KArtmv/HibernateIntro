@@ -2,16 +2,12 @@ package ua.foxminded.javaspring.consoleMenu.dao.repository;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.context.annotation.PropertySource;
-import org.springframework.dao.EmptyResultDataAccessException;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import ua.foxminded.javaspring.consoleMenu.dao.StudentAtCourseDAO;
 import ua.foxminded.javaspring.consoleMenu.model.Course;
 import ua.foxminded.javaspring.consoleMenu.model.Student;
 import ua.foxminded.javaspring.consoleMenu.model.StudentAtCourse;
-import ua.foxminded.javaspring.consoleMenu.rowmapper.StudentAtCourseMapper;
 
 import javax.persistence.*;
 import java.util.List;

@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "studenttocourse",
-uniqueConstraints = @UniqueConstraint(columnNames = {"student_id", "course_id"}))
+        uniqueConstraints = @UniqueConstraint(columnNames = {"student_id", "course_id"}))
 public class StudentAtCourse {
 
     @Id
@@ -38,7 +38,8 @@ public class StudentAtCourse {
         this.student = student;
     }
 
-    public StudentAtCourse() {}
+    public StudentAtCourse() {
+    }
 
     public Student getStudent() {
         return student;

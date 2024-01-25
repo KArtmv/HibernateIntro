@@ -5,13 +5,13 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import ua.foxminded.javaspring.consoleMenu.DataInitializer;
 import ua.foxminded.javaspring.consoleMenu.dao.CourseDAO;
 import ua.foxminded.javaspring.consoleMenu.dao.StudentAtCourseDAO;
 import ua.foxminded.javaspring.consoleMenu.exception.InvalidIdException;
 import ua.foxminded.javaspring.consoleMenu.model.Course;
 import ua.foxminded.javaspring.consoleMenu.model.Student;
 import ua.foxminded.javaspring.consoleMenu.model.StudentAtCourse;
-import ua.foxminded.javaspring.consoleMenu.DataInitializer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,7 +29,7 @@ class CourseServiceImplTest {
     @Mock
     private CourseDAO courseDAO;
 
-    public static final  Course course = new Course(1L);
+    public static final Course course = new Course(1L);
 
     @InjectMocks
     private CourseServiceImpl courseService;
@@ -53,20 +53,20 @@ class CourseServiceImplTest {
 
         verify(courseDAO).getItemByID(course);
         verify(studentAtCourseDAO).allStudentsFromCourse(course);
-  }
+    }
 
     @Test
     void allStudentsFromCourse_shouldThrowsException_whenCourseIDIsNotExist() {
         when(courseDAO.getItemByID(course)).thenReturn(Optional.empty());
 
         assertThrows(InvalidIdException.class, () ->
-            courseService.allStudentsFromCourse(course));
+                courseService.allStudentsFromCourse(course));
 
         verify(courseDAO).getItemByID(course);
     }
 
     @Test
-    void getAllCourses_shouldReturnListOfCourses_whenRequest(){
+    void getAllCourses_shouldReturnListOfCourses_whenRequest() {
         List<Course> courses = new DataInitializer().coursesListInit();
 
         when(courseDAO.getAll()).thenReturn(courses);

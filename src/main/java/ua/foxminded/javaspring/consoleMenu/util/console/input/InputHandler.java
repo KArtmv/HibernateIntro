@@ -5,10 +5,10 @@ import ua.foxminded.javaspring.consoleMenu.model.Course;
 import ua.foxminded.javaspring.consoleMenu.model.Group;
 import ua.foxminded.javaspring.consoleMenu.model.Student;
 import ua.foxminded.javaspring.consoleMenu.model.StudentAtCourse;
-import ua.foxminded.javaspring.consoleMenu.util.MyScanner;
-import ua.foxminded.javaspring.consoleMenu.util.console.output.ConsolePrinter;
 import ua.foxminded.javaspring.consoleMenu.service.StudentService;
 import ua.foxminded.javaspring.consoleMenu.util.ApplicationMessages;
+import ua.foxminded.javaspring.consoleMenu.util.MyScanner;
+import ua.foxminded.javaspring.consoleMenu.util.console.output.ConsolePrinter;
 
 import java.util.InputMismatchException;
 
@@ -35,7 +35,7 @@ public class InputHandler {
         return s;
     }
 
-    public Student getDataOfNewStudent(){
+    public Student getDataOfNewStudent() {
         Student student = new Student();
         consolePrinter.print(messages.inputNewStudentData);
         consolePrinter.print(messages.inputStudentFirstName);
@@ -66,31 +66,31 @@ public class InputHandler {
         return scanner.getLine().equalsIgnoreCase("yes");
     }
 
-    public Course getCourse(){
+    public Course getCourse() {
         Course course = new Course();
         course.setCourseID(scanner.getLong());
         return course;
     }
 
-    public Group getGroup(){
+    public Group getGroup() {
         Group group = new Group();
         group.setGroupId(scanner.getLong());
         return group;
     }
 
-    public Student getStudent(){
+    public Student getStudent() {
         Student student = new Student();
         student.setStudentID(scanner.getLong());
         return student;
     }
 
-    public StudentAtCourse getEnrollment(){
+    public StudentAtCourse getEnrollment() {
         StudentAtCourse studentAtCourse = new StudentAtCourse();
         studentAtCourse.setEnrollmentID(scanner.getLong());
         return studentAtCourse;
     }
 
-    public Integer getRequiredAmountOfStudents(){
+    public Integer getRequiredAmountOfStudents() {
         return scanner.getInt();
     }
 }

@@ -12,7 +12,8 @@ public class Group {
     @Column(nullable = false, length = 10)
     private String groupName;
 
-    public Group() {}
+    public Group() {
+    }
 
     public Group(Long groupId) {
         this.groupId = groupId;

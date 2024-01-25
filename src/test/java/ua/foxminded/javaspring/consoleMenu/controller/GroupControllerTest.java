@@ -6,17 +6,18 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import ua.foxminded.javaspring.consoleMenu.dto.CounterStudentsAtGroup;
-import ua.foxminded.javaspring.consoleMenu.util.console.input.InputHandler;
-import ua.foxminded.javaspring.consoleMenu.util.console.output.ConsolePrinter;
 import ua.foxminded.javaspring.consoleMenu.service.GroupService;
 import ua.foxminded.javaspring.consoleMenu.util.ApplicationMessages;
+import ua.foxminded.javaspring.consoleMenu.util.console.input.InputHandler;
+import ua.foxminded.javaspring.consoleMenu.util.console.output.ConsolePrinter;
 
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.List;
 
 import static org.mockito.ArgumentMatchers.anyInt;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 class GroupControllerTest {
 

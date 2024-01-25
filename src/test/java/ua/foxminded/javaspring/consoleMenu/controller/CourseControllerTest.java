@@ -9,17 +9,17 @@ import ua.foxminded.javaspring.consoleMenu.exception.InvalidIdException;
 import ua.foxminded.javaspring.consoleMenu.model.Course;
 import ua.foxminded.javaspring.consoleMenu.model.Student;
 import ua.foxminded.javaspring.consoleMenu.model.StudentAtCourse;
-import ua.foxminded.javaspring.consoleMenu.util.console.input.InputHandler;
-import ua.foxminded.javaspring.consoleMenu.util.console.output.ConsolePrinter;
 import ua.foxminded.javaspring.consoleMenu.service.CourseService;
 import ua.foxminded.javaspring.consoleMenu.util.ApplicationMessages;
+import ua.foxminded.javaspring.consoleMenu.util.console.input.InputHandler;
+import ua.foxminded.javaspring.consoleMenu.util.console.output.ConsolePrinter;
 
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.List;
 
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 class CourseControllerTest {
 
@@ -61,7 +61,7 @@ class CourseControllerTest {
     }
 
     @Test
-    void allStudentsFromCourse_shouldDoNothing_whenStudentsAreNotAtCourse(){
+    void allStudentsFromCourse_shouldDoNothing_whenStudentsAreNotAtCourse() {
         List<StudentAtCourse> studentsFromCourse = new ArrayList<>();
 
         when(inputHandler.getCourse()).thenReturn(course);
@@ -75,7 +75,7 @@ class CourseControllerTest {
     }
 
     @Test
-    void allStudentsFromCourse_shouldThrowsInvalidIdException_whenCourseIsNotExist(){
+    void allStudentsFromCourse_shouldThrowsInvalidIdException_whenCourseIsNotExist() {
         when(inputHandler.getCourse()).thenReturn(course);
         when(courseService.allStudentsFromCourse(course)).thenThrow(InvalidIdException.class);
 
@@ -88,7 +88,7 @@ class CourseControllerTest {
     }
 
     @Test
-    void allStudentsFromCourse_shouldThrowsInputMismatchException_whenInputNotNumeric(){
+    void allStudentsFromCourse_shouldThrowsInputMismatchException_whenInputNotNumeric() {
         when(inputHandler.getCourse()).thenThrow(InputMismatchException.class);
 
         courseController.allStudentsFromCourse();

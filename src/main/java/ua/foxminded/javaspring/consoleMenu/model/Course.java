@@ -15,7 +15,7 @@ public class Course {
     @Column(nullable = false, length = 100)
     private String courseDescription;
 
-    public Course(){
+    public Course() {
     }
 
     public Course(Long courseID) {

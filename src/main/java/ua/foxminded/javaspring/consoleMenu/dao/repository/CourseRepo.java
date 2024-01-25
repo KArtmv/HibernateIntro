@@ -2,7 +2,6 @@ package ua.foxminded.javaspring.consoleMenu.dao.repository;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Repository;
 import ua.foxminded.javaspring.consoleMenu.dao.CourseDAO;
 import ua.foxminded.javaspring.consoleMenu.model.Course;

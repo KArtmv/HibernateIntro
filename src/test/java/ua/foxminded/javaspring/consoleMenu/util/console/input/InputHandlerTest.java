@@ -12,16 +12,15 @@ import ua.foxminded.javaspring.consoleMenu.model.Course;
 import ua.foxminded.javaspring.consoleMenu.model.Group;
 import ua.foxminded.javaspring.consoleMenu.model.Student;
 import ua.foxminded.javaspring.consoleMenu.model.StudentAtCourse;
-import ua.foxminded.javaspring.consoleMenu.util.console.input.InputHandler;
-import ua.foxminded.javaspring.consoleMenu.util.MyScanner;
-import ua.foxminded.javaspring.consoleMenu.util.console.output.ConsolePrinter;
 import ua.foxminded.javaspring.consoleMenu.service.StudentService;
 import ua.foxminded.javaspring.consoleMenu.util.ApplicationMessages;
+import ua.foxminded.javaspring.consoleMenu.util.MyScanner;
+import ua.foxminded.javaspring.consoleMenu.util.console.output.ConsolePrinter;
 
 import java.util.InputMismatchException;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
 
 class InputHandlerTest {

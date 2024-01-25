@@ -42,32 +42,32 @@ public class MenuInteraction {
     }
 
     private void chooseOption() {
-            String receivedOption = consoleInput.inputOptionMenu();
-            switch (receivedOption) {
-                case "1":
-                    groupController.counterStudentsAtGroups();
-                    break;
-                case "2":
-                    courseController.allStudentsFromCourse();
-                    break;
-                case "3":
-                    studentController.addNewStudent();
-                    break;
-                case "4":
-                    studentController.deleteStudent();
-                    break;
-                case "5":
-                    studentController.addStudentToCourse();
-                    break;
-                case "6":
-                    studentController.removeStudentFromCourse();
-                    break;
-                case OPTION_EXIT:
-                    isExit = true;
-                    break;
-                default:
-                    LOGGER.error("Invalid option selected: {}", receivedOption);
-                    break;
-            }
+        String receivedOption = consoleInput.inputOptionMenu();
+        switch (receivedOption) {
+            case "1":
+                groupController.counterStudentsAtGroups();
+                break;
+            case "2":
+                courseController.allStudentsFromCourse();
+                break;
+            case "3":
+                studentController.addNewStudent();
+                break;
+            case "4":
+                studentController.deleteStudent();
+                break;
+            case "5":
+                studentController.addStudentToCourse();
+                break;
+            case "6":
+                studentController.removeStudentFromCourse();
+                break;
+            case OPTION_EXIT:
+                isExit = true;
+                break;
+            default:
+                LOGGER.error("Invalid option selected: {}", receivedOption);
+                break;
+        }
     }
 }
