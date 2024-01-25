@@ -40,9 +40,9 @@ class GroupControllerTest {
     void counterStudentsAtGroups_shouldViewGroupsByAmountOfStudents_whenFoundedByRequiredAmount() {
         int requiredAmountOfStudent = 10;
         List<CounterStudentsAtGroup> counterStudentsAtGroups = new ArrayList<>();
-        counterStudentsAtGroups.add(new CounterStudentsAtGroup(10, "group1"));
-        counterStudentsAtGroups.add(new CounterStudentsAtGroup(1, "group2"));
-        counterStudentsAtGroups.add(new CounterStudentsAtGroup(5, "group3"));
+        counterStudentsAtGroups.add(new CounterStudentsAtGroup("group1", 10));
+        counterStudentsAtGroups.add(new CounterStudentsAtGroup("group2", 1));
+        counterStudentsAtGroups.add(new CounterStudentsAtGroup("group3", 5));
 
         when(inputHandler.getRequiredAmountOfStudents()).thenReturn(requiredAmountOfStudent);
         when(groupService.counterStudentsAtGroups(anyInt())).thenReturn(counterStudentsAtGroups);

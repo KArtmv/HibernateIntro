@@ -85,7 +85,7 @@ class ConsolePrinterTest {
     void viewAmountStudentAtGroup_ShouldPrintCountOfStudentsAndGroupName_WhenCounterStudentsExist() {
         ReflectionTestUtils.setField(messages, "printGroupByCountEnrollmentStudents", "Count of student: %s, group: %s.");
 
-        List<CounterStudentsAtGroup> counterStudents = Collections.singletonList(new CounterStudentsAtGroup(1, "someGroup"));
+        List<CounterStudentsAtGroup> counterStudents = Collections.singletonList(new CounterStudentsAtGroup("someGroup", 1));
 
         System.setOut(new PrintStream(outputStream));
 
