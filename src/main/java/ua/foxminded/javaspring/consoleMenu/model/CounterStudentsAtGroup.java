@@ -2,15 +2,15 @@ package ua.foxminded.javaspring.consoleMenu.model;
 
 public class CounterStudentsAtGroup {
 
-    private Integer studentsCount;
+    private Long studentsCount;
     private String groupName;
 
-    public CounterStudentsAtGroup(Integer studentsCount, String groupName) {
+    public CounterStudentsAtGroup(String groupName, Long studentsCount) {
         this.studentsCount = studentsCount;
         this.groupName = groupName;
     }
 
-    public Integer getStudentsCount() {
+    public Long getStudentsCount() {
         return studentsCount;
     }
 
