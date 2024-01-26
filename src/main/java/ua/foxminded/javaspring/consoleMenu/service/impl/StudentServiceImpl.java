@@ -32,7 +32,7 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public boolean addNewStudent(Student student) {
-        if (groupDAO.getItemByID(student.getGroup()).isPresent()) {
+        if (groupDAO.getItemByID(student.getGroup().getGroupId()).isPresent()) {
             return studentDAO.addItem(student);
         } else {
             throw new InvalidIdException("Not found group with received ID: " + student.getGroup().getGroupId());
@@ -47,7 +47,7 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public boolean addStudentToCourse(StudentAtCourse studentAtCourse) {
-        if (courseDAO.getItemByID(studentAtCourse.getCourse()).isPresent()) {
+        if (courseDAO.getItemByID(studentAtCourse.getCourse().getCourseID()).isPresent()) {
             return studentAtCourseDAO.addItem(studentAtCourse);
         } else {
             throw new InvalidIdException("Not found course with received ID: " + studentAtCourse.getCourse().getCourseID());
@@ -68,7 +68,7 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public Student getStudent(Student student) {
-        return studentDAO.getItemByID(student).orElseThrow(() -> new InvalidIdException("Not found student with given ID: " + student.getStudentID()));
+        return studentDAO.getItemByID(student.getStudentID()).orElseThrow(() -> new InvalidIdException("Not found student with given ID: " + student.getStudentID()));
     }
 
     @Override
