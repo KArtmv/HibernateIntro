@@ -5,9 +5,13 @@ spring:
     username: admin
     password: admin
     initialization-mode: always
+
+
   sql:
     init:
       mode: always
+      schema-locations: classpath:/sql/schema.sql
+      data-locations: classpath:/sql/data.sql
   jpa:
     hibernate:
       ddl-auto: none
