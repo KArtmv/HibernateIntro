@@ -19,13 +19,11 @@ public class StudentAtCourseRepo extends GenericDAOWithJPA<StudentAtCourse, Long
 
     private static final Logger LOGGER = LoggerFactory.getLogger(StudentAtCourseRepo.class);
 
-    private static final String SQL_REMOVE_STUDENT_FROM_ALL_THEIR_COURSES = "DELETE FROM StudentAtCourse where student=:student";
-    private static final String SQL_GET_ALL_STUDENT_FROM_COURSE = "SELECT stc FROM StudentAtCourse stc WHERE stc.course=:course";
-
     @Override
     public List<StudentAtCourse> allStudentsFromCourse(Course course) {
-        TypedQuery<StudentAtCourse> query = entityManager.createQuery(SQL_GET_ALL_STUDENT_FROM_COURSE, StudentAtCourse.class);
-        query.setParameter("course", course);
+        TypedQuery<StudentAtCourse> query = entityManager
+            .createQuery("SELECT stc FROM StudentAtCourse stc WHERE stc.course=:course", StudentAtCourse.class)
+            .setParameter("course", course);
         return query.getResultList();
     }
 
@@ -45,8 +43,9 @@ public class StudentAtCourseRepo extends GenericDAOWithJPA<StudentAtCourse, Long
     @Transactional
     public void removeStudentFromAllTheirCourses(Student student) {
         try {
-            Query query = entityManager.createQuery(SQL_REMOVE_STUDENT_FROM_ALL_THEIR_COURSES);
-            query.setParameter("student", student);
+            Query query = entityManager
+                    .createQuery("DELETE FROM StudentAtCourse where student=:student")
+                    .setParameter("student", student);
             entityManager.remove(entityManager.find(StudentAtCourse.class, student.getStudentID()));
             query.executeUpdate();
         } catch (IllegalArgumentException | PersistenceException e) {

@@ -17,8 +17,6 @@ public class StudentRepo extends GenericDAOWithJPA<Student, Long> implements Stu
 
     private final Logger LOGGER = LoggerFactory.getLogger(StudentRepo.class);
 
-    private static final String SQL_GET_LIST_COURSES_OF_STUDENT = "SELECT stc FROM StudentAtCourse stc WHERE stc.student=:student";
-
     @Override
     @Transactional
     public boolean removeStudent(Student student) {
@@ -33,8 +31,9 @@ public class StudentRepo extends GenericDAOWithJPA<Student, Long> implements Stu
 
     @Override
     public List<StudentAtCourse> studentCourses(Student student) {
-        TypedQuery<StudentAtCourse> query = entityManager.createQuery(SQL_GET_LIST_COURSES_OF_STUDENT, StudentAtCourse.class);
-        query.setParameter("student", student);
+        TypedQuery<StudentAtCourse> query = entityManager
+            .createQuery("SELECT stc FROM StudentAtCourse stc WHERE stc.student=:student", StudentAtCourse.class)
+            .setParameter("student", student);
         return query.getResultList();
     }
 }
