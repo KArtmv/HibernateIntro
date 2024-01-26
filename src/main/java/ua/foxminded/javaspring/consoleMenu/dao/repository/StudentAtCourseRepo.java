@@ -9,17 +9,15 @@ import ua.foxminded.javaspring.consoleMenu.model.Course;
 import ua.foxminded.javaspring.consoleMenu.model.Student;
 import ua.foxminded.javaspring.consoleMenu.model.StudentAtCourse;
 
-import javax.persistence.*;
+import javax.persistence.PersistenceException;
+import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 import java.util.List;
-import java.util.Optional;
 
 @Repository
-public class StudentAtCourseRepo implements StudentAtCourseDAO {
+public class StudentAtCourseRepo extends GenericDAOWithJPA<StudentAtCourse, Long> implements StudentAtCourseDAO {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(StudentAtCourseRepo.class);
-
-    @PersistenceContext
-    private EntityManager entityManager;
 
     private static final String SQL_REMOVE_STUDENT_FROM_ALL_THEIR_COURSES = "DELETE FROM StudentAtCourse where student=:student";
     private static final String SQL_GET_ALL_STUDENT_FROM_COURSE = "SELECT stc FROM StudentAtCourse stc WHERE stc.course=:course";
@@ -29,28 +27,6 @@ public class StudentAtCourseRepo implements StudentAtCourseDAO {
         TypedQuery<StudentAtCourse> query = entityManager.createQuery(SQL_GET_ALL_STUDENT_FROM_COURSE, StudentAtCourse.class);
         query.setParameter("course", course);
         return query.getResultList();
-    }
-
-    @Override
-    @Transactional
-    public boolean addItem(StudentAtCourse studentAtCourse) {
-        try {
-            entityManager.persist(studentAtCourse);
-            return true;
-        } catch (PersistenceException e) {
-            LOGGER.error("Failed to persist: {}", e.getMessage());
-            return false;
-        }
-    }
-
-    @Override
-    public Optional<StudentAtCourse> getItemByID(StudentAtCourse studentAtCourse) {
-        try {
-            return Optional.ofNullable(entityManager.find(StudentAtCourse.class, studentAtCourse.getEnrollmentID()));
-        } catch (IllegalArgumentException | PersistenceException e) {
-            LOGGER.error("Failed to obtain: {}", e.getMessage());
-            return Optional.empty();
-        }
     }
 
     @Override
@@ -67,16 +43,14 @@ public class StudentAtCourseRepo implements StudentAtCourseDAO {
 
     @Override
     @Transactional
-    public boolean removeStudentFromAllTheirCourses(Student student) {
+    public void removeStudentFromAllTheirCourses(Student student) {
         try {
             Query query = entityManager.createQuery(SQL_REMOVE_STUDENT_FROM_ALL_THEIR_COURSES);
             query.setParameter("student", student);
             entityManager.remove(entityManager.find(StudentAtCourse.class, student.getStudentID()));
             query.executeUpdate();
-            return true;
         } catch (IllegalArgumentException | PersistenceException e) {
             LOGGER.error("Failed to remove student from all their courses: {}", e.getMessage());
-            return false;
         }
     }
 }
