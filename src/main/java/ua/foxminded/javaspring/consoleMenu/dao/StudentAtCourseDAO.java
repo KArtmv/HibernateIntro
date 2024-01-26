@@ -6,10 +6,10 @@ import ua.foxminded.javaspring.consoleMenu.model.StudentAtCourse;
 
 import java.util.List;
 
-public interface StudentAtCourseDAO extends DAO<StudentAtCourse> {
+public interface StudentAtCourseDAO extends DAO<StudentAtCourse, Long> {
     List<StudentAtCourse> allStudentsFromCourse(Course course);
 
-    boolean removeStudentFromAllTheirCourses(Student student);
+    void removeStudentFromAllTheirCourses(Student student);
 
     boolean removeStudentFromCourse(StudentAtCourse studentAtCourse);
 }

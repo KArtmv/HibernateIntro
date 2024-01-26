@@ -5,7 +5,7 @@ import ua.foxminded.javaspring.consoleMenu.model.Group;
 
 import java.util.List;
 
-public interface GroupDAO extends DAO<Group> {
+public interface GroupDAO extends DAO<Group, Long> {
     List<CounterStudentsAtGroup> counterStudentsAtGroups(Integer count);
 
     List<Group> getAll();
