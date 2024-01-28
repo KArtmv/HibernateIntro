@@ -12,6 +12,15 @@ public class Group extends BaseItem {
     public Group() {
     }
 
+    public Group(Long id) {
+        super(id);
+    }
+
+    public Group(Long id, String groupName) {
+        super(id);
+        this.groupName = groupName;
+    }
+
     public Group(String groupName) {
         this.groupName = groupName;
     }

@@ -14,7 +14,17 @@ public class Course extends BaseItem {
     public Course() {
     }
 
+    public Course(Long id) {
+        super(id);
+    }
+
     public Course(String courseName, String courseDescription) {
+        this.courseName = courseName;
+        this.courseDescription = courseDescription;
+    }
+
+    public Course(Long id, String courseName, String courseDescription) {
+        super(id);
         this.courseName = courseName;
         this.courseDescription = courseDescription;
     }

@@ -17,7 +17,22 @@ public class StudentAtCourse extends BaseItem {
     public StudentAtCourse() {
     }
 
+    public StudentAtCourse(Long id) {
+        super(id);
+    }
+
+    public StudentAtCourse(Long id, Student student) {
+        super(id);
+        this.student = student;
+    }
+
     public StudentAtCourse(Student student, Course course) {
+        this.student = student;
+        this.course = course;
+    }
+
+    public StudentAtCourse(Long id, Student student, Course course) {
+        super(id);
         this.student = student;
         this.course = course;
     }

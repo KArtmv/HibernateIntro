@@ -17,15 +17,26 @@ public class Student extends BaseItem {
     public Student() {
     }
 
-    public Student(String firstName, String lastName, Group group) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.group = group;
+    public Student(Long id) {
+        super(id);
     }
 
     public Student(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
+    }
+
+    public Student(Long id, String firstName, String lastName) {
+        super(id);
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+
+    public Student(Long id, String firstName, String lastName, Group group) {
+        super(id);
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.group = group;
     }
 
     public String getFirstName() {
