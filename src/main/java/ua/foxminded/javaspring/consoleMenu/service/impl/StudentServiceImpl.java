@@ -32,10 +32,10 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public boolean addNewStudent(Student student) {
-        if (groupDAO.getItemByID(student.getGroup().getGroupId()).isPresent()) {
+        if (groupDAO.getItemByID(student.getGroup().getId()).isPresent()) {
             return studentDAO.addItem(student);
         } else {
-            throw new InvalidIdException("Not found group with received ID: " + student.getGroup().getGroupId());
+            throw new InvalidIdException("Not found group with received ID: " + student.getGroup().getId());
         }
     }
 
@@ -47,28 +47,28 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public boolean addStudentToCourse(StudentAtCourse studentAtCourse) {
-        if (courseDAO.getItemByID(studentAtCourse.getCourse().getCourseID()).isPresent()) {
+        if (courseDAO.getItemByID(studentAtCourse.getCourse().getId()).isPresent()) {
             return studentAtCourseDAO.addItem(studentAtCourse);
         } else {
-            throw new InvalidIdException("Not found course with received ID: " + studentAtCourse.getCourse().getCourseID());
+            throw new InvalidIdException("Not found course with received ID: " + studentAtCourse.getCourse().getId());
         }
     }
 
     @Override
     public boolean removeStudentFromCourse(StudentAtCourse studentAtCourse) {
         if (studentDAO.studentCourses(studentAtCourse.getStudent()).stream()
-                .anyMatch(id -> Objects.equals(id.getEnrollmentID(), studentAtCourse.getEnrollmentID()))) {
+                .anyMatch(id -> Objects.equals(id.getId(), studentAtCourse.getId()))) {
             return studentAtCourseDAO.removeStudentFromCourse(studentAtCourse);
         } else {
             throw new InvalidIdException(String.format(
                     "Received enrollment ID: %s, is not found or not relate to given student: ID: %s ",
-                    studentAtCourse.getEnrollmentID(), studentAtCourse.getStudent().getStudentID()));
+                    studentAtCourse.getId(), studentAtCourse.getStudent().getId()));
         }
     }
 
     @Override
     public Student getStudent(Student student) {
-        return studentDAO.getItemByID(student.getStudentID()).orElseThrow(() -> new InvalidIdException("Not found student with given ID: " + student.getStudentID()));
+        return studentDAO.getItemByID(student.getId()).orElseThrow(() -> new InvalidIdException("Not found student with given ID: " + student.getId()));
     }
 
     @Override

@@ -31,7 +31,7 @@ public class StudentAtCourseRepo extends GenericDAOWithJPA<StudentAtCourse, Long
     @Transactional
     public boolean removeStudentFromCourse(StudentAtCourse studentAtCourse) {
         try {
-            entityManager.remove(entityManager.find(StudentAtCourse.class, studentAtCourse.getEnrollmentID()));
+            entityManager.remove(entityManager.find(StudentAtCourse.class, studentAtCourse.getId()));
             return true;
         } catch (IllegalArgumentException | PersistenceException e) {
             LOGGER.error("Failed to remove student from course: {}", e.getMessage());
@@ -46,7 +46,7 @@ public class StudentAtCourseRepo extends GenericDAOWithJPA<StudentAtCourse, Long
             Query query = entityManager
                     .createQuery("DELETE FROM StudentAtCourse where student=:student")
                     .setParameter("student", student);
-            entityManager.remove(entityManager.find(StudentAtCourse.class, student.getStudentID()));
+            entityManager.remove(entityManager.find(StudentAtCourse.class, student.getId()));
             query.executeUpdate();
         } catch (IllegalArgumentException | PersistenceException e) {
             LOGGER.error("Failed to remove student from all their courses: {}", e.getMessage());

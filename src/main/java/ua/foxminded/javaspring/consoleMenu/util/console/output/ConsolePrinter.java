@@ -37,7 +37,7 @@ public class ConsolePrinter {
 
         allStudentCourses.forEach(studentAtCourse -> print(String.format(
                 messages.printCourseDetails,
-                studentAtCourse.getEnrollmentID(),
+                studentAtCourse.getId(),
                 studentAtCourse.getCourse().getCourseName(),
                 studentAtCourse.getCourse().getCourseDescription())));
     }
@@ -58,7 +58,7 @@ public class ConsolePrinter {
         List<Course> courses = courseService.getAllCourses();
         if (!CollectionUtils.isEmpty(courses)) {
             courses.forEach(course -> print(String.format(messages.printCourseDetails,
-                    course.getCourseID(), course.getCourseName(), course.getCourseDescription())));
+                    course.getId(), course.getCourseName(), course.getCourseDescription())));
         } else {
             LOGGER.info("Failed to get list of courses.");
         }
@@ -67,7 +67,7 @@ public class ConsolePrinter {
     public void printAllGroups() {
         List<Group> groups = groupService.getAllGroups();
         if (!CollectionUtils.isEmpty(groups)) {
-            groups.forEach(group -> print(String.format(messages.printAllGroups, group.getGroupId(), group.getGroupName())));
+            groups.forEach(group -> print(String.format(messages.printAllGroups, group.getId(), group.getGroupName())));
         } else {
             LOGGER.info("Failed to get list of courses.");
         }

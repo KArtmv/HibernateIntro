@@ -61,32 +61,32 @@ public class InputHandler {
     public boolean verifyValidStudent(Student student) {
         Student selectedStudent = studentService.getStudent(student);
         consolePrinter.print(String.format(messages.confirmStudentDetails,
-                selectedStudent.getStudentID(), selectedStudent.getFirstName(), selectedStudent.getLastName()));
+                selectedStudent.getId(), selectedStudent.getFirstName(), selectedStudent.getLastName()));
 
         return scanner.getLine().equalsIgnoreCase("yes");
     }
 
     public Course getCourse() {
         Course course = new Course();
-        course.setCourseID(scanner.getLong());
+        course.setId(scanner.getLong());
         return course;
     }
 
     public Group getGroup() {
         Group group = new Group();
-        group.setGroupId(scanner.getLong());
+        group.setId(scanner.getLong());
         return group;
     }
 
     public Student getStudent() {
         Student student = new Student();
-        student.setStudentID(scanner.getLong());
+        student.setId(scanner.getLong());
         return student;
     }
 
     public StudentAtCourse getEnrollment() {
         StudentAtCourse studentAtCourse = new StudentAtCourse();
-        studentAtCourse.setEnrollmentID(scanner.getLong());
+        studentAtCourse.setId(scanner.getLong());
         return studentAtCourse;
     }
 

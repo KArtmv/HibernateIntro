@@ -26,8 +26,8 @@ public class CourseServiceImpl implements CourseService {
     @Override
     public List<StudentAtCourse> allStudentsFromCourse(Course course) {
         return studentAtCourseDAO.allStudentsFromCourse(
-                courseDAO.getItemByID(course.getCourseID())
-                        .orElseThrow(() -> new InvalidIdException("No founded course by given ID: " + course.getCourseID())));
+                courseDAO.getItemByID(course.getId())
+                        .orElseThrow(() -> new InvalidIdException("No founded course by given ID: " + course.getId())));
     }
 
     @Override

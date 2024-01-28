@@ -21,7 +21,7 @@ public class StudentRepo extends GenericDAOWithJPA<Student, Long> implements Stu
     @Transactional
     public boolean removeStudent(Student student) {
         try {
-            entityManager.remove(entityManager.find(Student.class, student.getStudentID()));
+            entityManager.remove(entityManager.find(Student.class, student.getId()));
             return true;
         } catch (IllegalArgumentException | PersistenceException e) {
             LOGGER.error("Failed to remove student: {}", e.getMessage());

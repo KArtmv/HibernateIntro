@@ -39,7 +39,7 @@ public class CourseController {
             consolePrinter.printAllCourses();
             consolePrinter.print(messages.inputCourseIdToViewEnrolledStudents);
             Course course = inputHandler.getCourse();
-            LOGGER.debug("Received course ID: {}", course.getCourseID());
+            LOGGER.debug("Received course ID: {}", course.getId());
             List<StudentAtCourse> studentsFromCourse = courseService.allStudentsFromCourse(course);
 
             if (!CollectionUtils.isEmpty(studentsFromCourse)) {

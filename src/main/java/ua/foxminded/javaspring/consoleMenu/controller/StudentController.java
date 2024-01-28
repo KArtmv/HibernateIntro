@@ -50,7 +50,7 @@ public class StudentController {
         try {
             consolePrinter.print(messages.inputStudentIdToRemove);
             Student student = inputHandler.getStudent();
-            LOGGER.debug("Received student ID: {}", student.getStudentID());
+            LOGGER.debug("Received student ID: {}", student.getId());
 
             if (inputHandler.verifyValidStudent(student) && studentService.deleteStudent(student)) {
                 consolePrinter.print(messages.printStudentRemovedSuccess);
@@ -66,13 +66,13 @@ public class StudentController {
         try {
             consolePrinter.print(messages.inputStudentIdToAddToCourse);
             Student student = inputHandler.getStudent();
-            LOGGER.debug("Received student ID: {}", student.getStudentID());
+            LOGGER.debug("Received student ID: {}", student.getId());
 
             if (inputHandler.verifyValidStudent(student)) {
                 consolePrinter.print(messages.inputCourseId);
                 consolePrinter.printAllCourses();
                 StudentAtCourse studentAtCourse = new StudentAtCourse(student, inputHandler.getCourse());
-                LOGGER.debug("Received course Id: {}", studentAtCourse.getCourse().getCourseID());
+                LOGGER.debug("Received course Id: {}", studentAtCourse.getCourse().getId());
 
                 if (studentService.addStudentToCourse(studentAtCourse)) {
                     consolePrinter.print(messages.printStudentAddedToCourseSuccess);
@@ -89,7 +89,7 @@ public class StudentController {
         try {
             consolePrinter.print(messages.inputStudentIdToRemoveFromCourse);
             Student student = studentService.getStudent(inputHandler.getStudent());
-            LOGGER.debug("Received student id: {}.", student.getStudentID());
+            LOGGER.debug("Received student id: {}.", student.getId());
             List<StudentAtCourse> allStudentCourses = studentService.getAllCoursesOfStudent(student);
 
             if (!CollectionUtils.isEmpty(allStudentCourses) && inputHandler.verifyValidStudent(student)) {
@@ -98,7 +98,7 @@ public class StudentController {
                 StudentAtCourse enrollmentID = inputHandler.getEnrollment();
                 enrollmentID.setStudent(student);
 
-                LOGGER.debug("Received enrollment id: {}.", enrollmentID.getEnrollmentID());
+                LOGGER.debug("Received enrollment id: {}.", enrollmentID.getId());
 
                 if (studentService.removeStudentFromCourse(enrollmentID)) {
                     consolePrinter.print(messages.printStudentRemovedFromCourseSuccess);
