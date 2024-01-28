@@ -33,9 +33,9 @@ class GroupServiceImplTest {
     @Test
     void counterStudentsAtGroups_shouldReturnListOfCountStudentsAtGroup_whenIsCalled() {
         List<CounterStudentsAtGroup> counterStudentsAtGroup = new ArrayList<>();
-        counterStudentsAtGroup.add(new CounterStudentsAtGroup("someGroup1", 22));
-        counterStudentsAtGroup.add(new CounterStudentsAtGroup("someGroup2", 18));
-        counterStudentsAtGroup.add(new CounterStudentsAtGroup("someGroup3", 10));
+        counterStudentsAtGroup.add(new CounterStudentsAtGroup("someGroup1", 22L));
+        counterStudentsAtGroup.add(new CounterStudentsAtGroup("someGroup2", 18L));
+        counterStudentsAtGroup.add(new CounterStudentsAtGroup("someGroup3", 10L));
 
         int countStudentsAtGroup = 22;
 

@@ -19,6 +19,7 @@ import java.util.Optional;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -46,23 +47,23 @@ class CourseServiceImplTest {
         expect.add(new StudentAtCourse(new Student("firstName2", "lastName2"), course));
         expect.add(new StudentAtCourse(new Student("firstName3", "lastName3"), course));
 
-        when(courseDAO.getItemByID(course)).thenReturn(Optional.of(course));
+        when(courseDAO.getItemByID(anyLong())).thenReturn(Optional.of(course));
         when(studentAtCourseDAO.allStudentsFromCourse(course)).thenReturn(expect);
 
         assertThat(courseService.allStudentsFromCourse(course)).usingRecursiveComparison().ignoringCollectionOrder().isEqualTo(expect);
 
-        verify(courseDAO).getItemByID(course);
+        verify(courseDAO).getItemByID(course.getId());
         verify(studentAtCourseDAO).allStudentsFromCourse(course);
     }
 
     @Test
     void allStudentsFromCourse_shouldThrowsException_whenCourseIDIsNotExist() {
-        when(courseDAO.getItemByID(course)).thenReturn(Optional.empty());
+        when(courseDAO.getItemByID(anyLong())).thenReturn(Optional.empty());
 
         assertThrows(InvalidIdException.class, () ->
                 courseService.allStudentsFromCourse(course));
 
-        verify(courseDAO).getItemByID(course);
+        verify(courseDAO).getItemByID(course.getId());
     }
 
     @Test

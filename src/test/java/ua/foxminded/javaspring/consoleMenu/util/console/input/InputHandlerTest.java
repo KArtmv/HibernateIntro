@@ -52,7 +52,9 @@ class InputHandlerTest {
 
     @Test
     void getDataOfNewStudent_shouldReturnStudentObject_whenEnteredValidData() {
-        Student student = new Student("firstName", "lastName", new Group(1L));
+        Student student = new Student("firstName", "lastName");
+        student.setGroup( new Group(1L));
+
 
         when(scanner.getLine()).thenReturn("firstName").thenReturn("lastName");
         when(scanner.getLong()).thenReturn(1L);

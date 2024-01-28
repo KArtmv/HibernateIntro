@@ -23,6 +23,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -51,22 +52,22 @@ class StudentServiceImplTest {
 
     @Test
     void addNewStudent_shouldReturnTrue_whenIsAddedSuccessfully() {
-        when(groupDAO.getItemByID(any(Group.class))).thenReturn(Optional.of(student.getGroup()));
+        when(groupDAO.getItemByID(anyLong())).thenReturn(Optional.of(student.getGroup()));
         when(studentDAO.addItem(any(Student.class))).thenReturn(true);
 
         assertTrue(studentService.addNewStudent(student));
 
-        verify(groupDAO).getItemByID(any(Group.class));
+        verify(groupDAO).getItemByID(student.getGroup().getId());
         verify(studentDAO).addItem(student);
     }
 
     @Test
     void addNewStudent_shouldReturnFalse_whenReceivedCourseIsNotExist() {
-        when(groupDAO.getItemByID(any(Group.class))).thenReturn(Optional.empty());
+        when(groupDAO.getItemByID(anyLong())).thenReturn(Optional.empty());
 
         assertThrows(InvalidIdException.class, () -> studentService.addNewStudent(student));
 
-        verify(groupDAO).getItemByID(any(Group.class));
+        verify(groupDAO).getItemByID(student.getGroup().getId());
     }
 
     @Test
@@ -94,11 +95,11 @@ class StudentServiceImplTest {
 
     @Test
     void getItemByID_shouldReturnStudent_whenIsExist() {
-        when(studentDAO.getItemByID(any(Student.class))).thenReturn(Optional.of(student));
+        when(studentDAO.getItemByID(anyLong())).thenReturn(Optional.of(student));
 
         assertThat(studentService.getStudent(student)).isEqualTo(student);
 
-        verify(studentDAO).getItemByID(student);
+        verify(studentDAO).getItemByID(student.getId());
     }
 
     @Test
@@ -106,7 +107,7 @@ class StudentServiceImplTest {
         Course course = new Course(1L);
         StudentAtCourse studentAtCourse = new StudentAtCourse(student, course);
 
-        when(courseDAO.getItemByID(any(Course.class))).thenReturn(Optional.of(course));
+        when(courseDAO.getItemByID(anyLong())).thenReturn(Optional.of(course));
         when(studentAtCourseDAO.addItem(studentAtCourse)).thenReturn(true);
 
         assertTrue(studentService.addStudentToCourse(studentAtCourse));
@@ -116,7 +117,7 @@ class StudentServiceImplTest {
     void addStudentToCourse_shouldReturnTrue_whenCourseIdIsNotExist() {
         StudentAtCourse studentAtCourse = new StudentAtCourse(student, course);
 
-        when(courseDAO.getItemByID(any(Course.class))).thenReturn(Optional.empty());
+        when(courseDAO.getItemByID(anyLong())).thenReturn(Optional.empty());
 
         assertThrows(InvalidIdException.class, () -> studentService.addStudentToCourse(studentAtCourse));
     }
@@ -124,6 +125,7 @@ class StudentServiceImplTest {
     @Test
     void removeStudentFromCourse_shouldReturnTrue_whenIsRemoved() {
         StudentAtCourse studentToRemove = new StudentAtCourse(1L, student);
+
         List<StudentAtCourse> studentAtCourses = new ArrayList<>();
         studentAtCourses.add(new StudentAtCourse(1L, student));
         studentAtCourses.add(new StudentAtCourse(2L, student));
@@ -141,6 +143,7 @@ class StudentServiceImplTest {
     @Test
     void removeStudentFromCourse_shouldReturnFalse_whenEnrollmentNotExistOrNotRelateToStudent() {
         StudentAtCourse studentToRemove = new StudentAtCourse(10L, student);
+
         List<StudentAtCourse> studentAtCourses = new ArrayList<>();
         studentAtCourses.add(new StudentAtCourse(1L, student));
         studentAtCourses.add(new StudentAtCourse(2L, student));
