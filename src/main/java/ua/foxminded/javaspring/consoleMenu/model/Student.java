@@ -4,12 +4,8 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "students")
-public class Student {
+public class Student extends BaseItem {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "student_id")
-    private Long studentID;
     @Column(nullable = false, length = 15)
     private String firstName;
     @Column(nullable = false, length = 15)
@@ -19,10 +15,6 @@ public class Student {
     private Group group;
 
     public Student() {
-    }
-
-    public Student(Long studentID) {
-        this.studentID = studentID;
     }
 
     public Student(String firstName, String lastName, Group group) {
@@ -36,33 +28,12 @@ public class Student {
         this.lastName = lastName;
     }
 
-    public Student(Long studentID, String firstName, String lastName) {
-        this.studentID = studentID;
-        this.firstName = firstName;
-        this.lastName = lastName;
-    }
-
-    public Student(Long studentID, String firstName, String lastName, Group group) {
-        this.studentID = studentID;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.group = group;
-    }
-
-    public Long getStudentID() {
-        return studentID;
-    }
-
     public String getFirstName() {
         return firstName;
     }
 
     public String getLastName() {
         return lastName;
-    }
-
-    public void setStudentID(Long studentID) {
-        this.studentID = studentID;
     }
 
     public void setFirstName(String firstName) {
