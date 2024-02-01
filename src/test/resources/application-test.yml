@@ -1,0 +1,13 @@
+spring:
+  datasource:
+    username: admin
+    password: admin
+  sql:
+    init:
+      mode: never
+  test:
+    database:
+      replace: none
+  jpa:
+    hibernate:
+      ddl-auto: none
