@@ -2,19 +2,16 @@ package ua.foxminded.javaspring.consoleMenu.dao.repository;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.FilterType;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.jdbc.SqlMergeMode;
-import ua.foxminded.javaspring.consoleMenu.TestDatabaseConfiguration;
 import ua.foxminded.javaspring.consoleMenu.dao.CourseDAO;
 import ua.foxminded.javaspring.consoleMenu.model.Course;
 
 import java.util.List;
-import java.util.Optional;
 
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
@@ -22,7 +19,7 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 @DataJpaTest(includeFilters = @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, classes = {CourseDAO.class}))
 @ActiveProfiles("test")
 @Sql({"/sql/course/courseTable.sql", "/sql/course/courseData.sql"})
-class CourseRepoTest extends TestDatabaseConfiguration{
+class CourseRepoTest {
 
     @Autowired
     private CourseDAO courseDAO;
