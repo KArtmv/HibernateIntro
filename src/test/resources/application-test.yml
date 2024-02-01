@@ -1,5 +1,7 @@
 spring:
   datasource:
+    url: jdbc:tc:postgresql:15.1:///serviceLayerDB&TC_REUSABLE=true
+    driver-class-name: org.testcontainers.jdbc.ContainerDatabaseDriver
     username: admin
     password: admin
   sql:
