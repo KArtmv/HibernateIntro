@@ -4,9 +4,6 @@ spring:
     url: jdbc:postgresql://localhost:5432/serviceLayerDB
     username: admin
     password: admin
-    initialization-mode: always
-
-
   sql:
     init:
       mode: always
