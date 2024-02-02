@@ -26,6 +26,12 @@ public class Student extends BaseItem {
         this.lastName = lastName;
     }
 
+    public Student(String firstName, String lastName, Group group) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.group = group;
+    }
+
     public Student(Long id, String firstName, String lastName) {
         super(id);
         this.firstName = firstName;
