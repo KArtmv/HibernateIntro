@@ -32,7 +32,6 @@ class StudentRepoTest {
     @Sql(statements = "INSERT INTO students (first_name, last_name, group_id) values ('Ava', 'Rodriguez', 1)")
     void getById_shouldReturnStudent_whenIdIsExist() {
         Student student = testData.getStudent();
-        student.setGroup(instance.getGroup());
 
         assertThat(studentDAO.getItemByID(student.getId()).get()).usingRecursiveComparison()
                 .isEqualTo(student);
@@ -51,7 +50,6 @@ class StudentRepoTest {
             assertThat(studentDAO.addItem(new Student(testData.studentFirstName, testData.studentLastName, instance.getGroup()))).isTrue();
 
             Student student = testData.getStudent();
-            student.setGroup(instance.getGroup());
             assertThat(studentDAO.getItemByID(student.getId()).get()).usingRecursiveComparison().isEqualTo(student);
         });
     }
