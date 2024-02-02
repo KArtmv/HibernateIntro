@@ -44,9 +44,8 @@ public class StudentAtCourseRepo extends GenericDAOWithJPA<StudentAtCourse, Long
     public void removeStudentFromAllTheirCourses(Student student) {
         try {
             Query query = entityManager
-                    .createQuery("DELETE FROM StudentAtCourse where student=:student")
+                    .createQuery("DELETE FROM StudentAtCourse stc where student=:student")
                     .setParameter("student", student);
-            entityManager.remove(entityManager.find(StudentAtCourse.class, student.getId()));
             query.executeUpdate();
         } catch (IllegalArgumentException | PersistenceException e) {
             LOGGER.error("Failed to remove student from all their courses: {}", e.getMessage());
