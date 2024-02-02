@@ -46,7 +46,7 @@ public class ConsoleInteractionConfig {
     }
 
     @Bean
-    public Menu menu(ReadResourcesFile readResourcesFile){
+    public Menu menu(ReadResourcesFile readResourcesFile) {
         return new Menu(readResourcesFile);
     }
 }

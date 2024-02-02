@@ -8,8 +8,8 @@ import org.springframework.context.annotation.FilterType;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.jdbc.SqlMergeMode;
-import ua.foxminded.javaspring.consoleMenu.TestData;
 import ua.foxminded.javaspring.consoleMenu.ItemInstance;
+import ua.foxminded.javaspring.consoleMenu.TestData;
 import ua.foxminded.javaspring.consoleMenu.dao.StudentDAO;
 import ua.foxminded.javaspring.consoleMenu.model.Student;
 
@@ -45,7 +45,7 @@ class StudentRepoTest {
     }
 
     @Test
-    void addItem_shouldSuccessfullySaveNewStudent_whenIsRun(){
+    void addItem_shouldSuccessfullySaveNewStudent_whenIsRun() {
         assertAll(() -> {
             assertThat(studentDAO.addItem(new Student(testData.studentFirstName, testData.studentLastName, instance.getGroup()))).isTrue();
 
@@ -55,7 +55,7 @@ class StudentRepoTest {
     }
 
     @Test
-    void removeStudent_shouldSuccessfullyRemoveStudent_whenItRun(){
+    void removeStudent_shouldSuccessfullyRemoveStudent_whenItRun() {
         Student student = instance.getStudent();
 
         assertAll(() -> {

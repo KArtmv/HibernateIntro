@@ -9,7 +9,6 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.jdbc.SqlMergeMode;
 import ua.foxminded.javaspring.consoleMenu.TestData;
-import ua.foxminded.javaspring.consoleMenu.ItemInstance;
 import ua.foxminded.javaspring.consoleMenu.dao.GroupDAO;
 import ua.foxminded.javaspring.consoleMenu.model.Group;
 
@@ -31,24 +30,24 @@ class GroupRepoTest {
     @Test
     @SqlMergeMode(SqlMergeMode.MergeMode.MERGE)
     @Sql(statements = "INSERT INTO groups (group_name) values ('YS-28')")
-    void getById_shouldReturnGroup_whenGivenIdIsExist(){
+    void getById_shouldReturnGroup_whenGivenIdIsExist() {
         Group group = testData.getGroup();
-            assertThat(groupDAO.getItemByID(group.getId()).get()).usingRecursiveComparison().isEqualTo(group);
+        assertThat(groupDAO.getItemByID(group.getId()).get()).usingRecursiveComparison().isEqualTo(group);
     }
 
     @Test
-    void getById_shouldReturnOptionalEmpty_whenGivenIdIsNotExist(){
+    void getById_shouldReturnOptionalEmpty_whenGivenIdIsNotExist() {
         Group group = testData.getGroup();
         assertThat(groupDAO.getItemByID(group.getId())).isNotPresent();
     }
 
     @Test
-    void getAll_shouldReturnListOfAvailableGroups_whenItRequest(){
+    void getAll_shouldReturnListOfAvailableGroups_whenItRequest() {
         assertThat(groupDAO.getAll()).hasSize(3);
     }
 
     @Test
-    void addItem_shouldSaveInDatabaseNewGroup_whenItRun(){
+    void addItem_shouldSaveInDatabaseNewGroup_whenItRun() {
         Group group = new Group(testData.groupName);
 
         assertAll(() -> {

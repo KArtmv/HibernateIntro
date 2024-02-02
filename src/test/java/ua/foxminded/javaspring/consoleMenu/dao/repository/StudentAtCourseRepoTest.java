@@ -13,7 +13,7 @@ import ua.foxminded.javaspring.consoleMenu.dao.StudentAtCourseDAO;
 import ua.foxminded.javaspring.consoleMenu.model.StudentAtCourse;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 @DataJpaTest(includeFilters = @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, classes = StudentAtCourseDAO.class))
 @ActiveProfiles("test")
@@ -28,11 +28,11 @@ class StudentAtCourseRepoTest {
     @Test
     @SqlMergeMode(SqlMergeMode.MergeMode.MERGE)
     @Sql(statements = "INSERT INTO studenttocourse (student_id, course_id) values (5, 1)")
-    void getById_shouldReturnEnrollmentItem_whenIdIsExist(){
+    void getById_shouldReturnEnrollmentItem_whenIdIsExist() {
         StudentAtCourse studentAtCourse = instance.getStudentAtCourse();
 
-         assertThat(studentAtCourseDAO.getItemByID(studentAtCourse.getId()).get())
-                 .usingRecursiveComparison().isEqualTo(studentAtCourse);
+        assertThat(studentAtCourseDAO.getItemByID(studentAtCourse.getId()).get())
+                .usingRecursiveComparison().isEqualTo(studentAtCourse);
     }
 
     @Test
@@ -47,14 +47,14 @@ class StudentAtCourseRepoTest {
         StudentAtCourse studentAtCourse = instance.getStudentAtCourse();
 
         assertAll(() -> {
-           assertThat(studentAtCourseDAO.getItemByID(studentAtCourse.getId())).isPresent();
-           assertThat(studentAtCourseDAO.removeStudentFromCourse(new StudentAtCourse(studentAtCourse.getId()))).isTrue();
-           assertThat(studentAtCourseDAO.getItemByID(studentAtCourse.getId())).isNotPresent();
+            assertThat(studentAtCourseDAO.getItemByID(studentAtCourse.getId())).isPresent();
+            assertThat(studentAtCourseDAO.removeStudentFromCourse(new StudentAtCourse(studentAtCourse.getId()))).isTrue();
+            assertThat(studentAtCourseDAO.getItemByID(studentAtCourse.getId())).isNotPresent();
         });
     }
 
     @Test
-    void addItem_shouldSaveNewEnrollment_whenInvoke(){
+    void addItem_shouldSaveNewEnrollment_whenInvoke() {
         StudentAtCourse studentAtCourse = instance.getStudentAtCourse();
 
         assertAll(() -> {

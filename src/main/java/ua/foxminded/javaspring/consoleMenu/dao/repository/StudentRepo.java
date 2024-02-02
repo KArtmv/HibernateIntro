@@ -32,8 +32,8 @@ public class StudentRepo extends GenericDAOWithJPA<Student, Long> implements Stu
     @Override
     public List<StudentAtCourse> studentCourses(Student student) {
         TypedQuery<StudentAtCourse> query = entityManager
-            .createQuery("SELECT stc FROM StudentAtCourse stc WHERE stc.student=:student", StudentAtCourse.class)
-            .setParameter("student", student);
+                .createQuery("SELECT stc FROM StudentAtCourse stc WHERE stc.student=:student", StudentAtCourse.class)
+                .setParameter("student", student);
         return query.getResultList();
     }
 }

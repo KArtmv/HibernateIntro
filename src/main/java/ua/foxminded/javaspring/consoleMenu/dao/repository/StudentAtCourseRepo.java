@@ -22,8 +22,8 @@ public class StudentAtCourseRepo extends GenericDAOWithJPA<StudentAtCourse, Long
     @Override
     public List<StudentAtCourse> allStudentsFromCourse(Course course) {
         TypedQuery<StudentAtCourse> query = entityManager
-            .createQuery("SELECT stc FROM StudentAtCourse stc WHERE stc.course=:course", StudentAtCourse.class)
-            .setParameter("course", course);
+                .createQuery("SELECT stc FROM StudentAtCourse stc WHERE stc.course=:course", StudentAtCourse.class)
+                .setParameter("course", course);
         return query.getResultList();
     }
 

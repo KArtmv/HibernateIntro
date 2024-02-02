@@ -13,7 +13,8 @@ public abstract class BaseItem implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    public BaseItem(){}
+    public BaseItem() {
+    }
 
     public BaseItem(Long id) {
         this.id = id;
