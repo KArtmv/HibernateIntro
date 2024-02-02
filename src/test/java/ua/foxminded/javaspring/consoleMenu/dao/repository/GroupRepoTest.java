@@ -8,6 +8,8 @@ import org.springframework.context.annotation.FilterType;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.jdbc.SqlMergeMode;
+import ua.foxminded.javaspring.consoleMenu.TestData;
+import ua.foxminded.javaspring.consoleMenu.ItemInstance;
 import ua.foxminded.javaspring.consoleMenu.dao.GroupDAO;
 import ua.foxminded.javaspring.consoleMenu.model.Group;
 
@@ -21,21 +23,23 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 @Sql({"/sql/group/groupTable.sql", "/sql/group/groupData.sql"})
 class GroupRepoTest {
 
+    private final TestData testData = new TestData();
+
     @Autowired
     private GroupDAO groupDAO;
 
     @Test
     @SqlMergeMode(SqlMergeMode.MergeMode.MERGE)
-    @Sql(statements = "INSERT INTO groups (group_name) values ('YS-28');")
+    @Sql(statements = "INSERT INTO groups (group_name) values ('YS-28')")
     void getById_shouldReturnGroup_whenGivenIdIsExist(){
-            assertThat(groupDAO.getItemByID(4L).get())
-                    .usingRecursiveComparison()
-                    .isEqualTo(new Group(4L, "YS-28"));
+        Group group = testData.getGroup();
+            assertThat(groupDAO.getItemByID(group.getId()).get()).usingRecursiveComparison().isEqualTo(group);
     }
 
     @Test
     void getById_shouldReturnOptionalEmpty_whenGivenIdIsNotExist(){
-        assertThat(groupDAO.getItemByID(4L)).isNotPresent();
+        Group group = testData.getGroup();
+        assertThat(groupDAO.getItemByID(group.getId())).isNotPresent();
     }
 
     @Test
@@ -45,14 +49,14 @@ class GroupRepoTest {
 
     @Test
     void addItem_shouldSaveInDatabaseNewGroup_whenItRun(){
-        Group group = new Group("YS-28");
+        Group group = new Group(testData.groupName);
 
         assertAll(() -> {
             assertThat(groupDAO.addItem(group)).isTrue();
 
-            List<Group> courses = groupDAO.getAll();
-            assertThat(courses).hasSize(4);
-            assertThat(courses.get(3)).usingRecursiveComparison().isEqualTo(new Group(4L, group.getGroupName()));
+            List<Group> groups = groupDAO.getAll();
+            assertThat(groups).hasSize(4);
+            assertThat(groups.get(3)).usingRecursiveComparison().isEqualTo(testData.getGroup());
         });
     }
 }
